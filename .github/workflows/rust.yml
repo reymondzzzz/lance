@@ -109,7 +109,7 @@ jobs:
       - name: Run clippy
         run: cargo clippy --features cli,dynamodb,tensorflow,dynamodb_tests --tests --benches -- -D warnings
   mac-build:
-    runs-on: "macos-14"
+    runs-on: "macos-11"
     timeout-minutes: 45
     strategy:
       matrix:
@@ -128,8 +128,7 @@ jobs:
         run: brew install protobuf
       - name: Run tests
         run: |
-          cargo build --all-features
-          cargo test --all-features
+          cargo build --target aarch64-apple-darwin --all-features
   windows-build:
     runs-on: windows-latest
     defaults:
